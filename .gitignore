@@ -28,3 +28,8 @@ dist-ssr
 # dotenv environment variables file
 .env
 .env.test
+
+
+
+#vscode settings for workspace
+.vscode/
