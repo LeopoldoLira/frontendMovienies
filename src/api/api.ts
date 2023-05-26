@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const accessToken = localStorage.getItem("Token");
-
 const API = axios.create({
 	baseURL: "http://127.0.0.1:8000/",
-	headers: {
-		"Content-Type": "application/json",
-		Authorization: accessToken ? `Bearer ${accessToken}` : null,
-	},
+});
+
+API.interceptors.request.use((config) => {
+	const accessToken = localStorage.getItem("accesstoken");
+	config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : "";
+	return config;
 });
 
 API.interceptors.response.use(

@@ -25,7 +25,7 @@ const MovieContainer: React.FC = () => {
 		<>
 			<Navbar />
 			<div className="flex justify-center p-8">
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
 					{movies.map((movie) => (
 						<div key={movie.pk} className="relative">
 							<Link to={`movies/${movie.pk}`}>
