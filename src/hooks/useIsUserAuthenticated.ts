@@ -11,6 +11,7 @@ const useIsUserAuthenticated = () => {
 
 			if (status === 200) {
 				setIsAuthenticated(true);
+				localStorage.setItem("name", response.data.first_name);
 			}
 		};
 
