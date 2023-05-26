@@ -4,9 +4,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import { Token } from "../api/types";
-// interface AuthResponse {
-// 	token: string;
-// }
+
+import Navbar from "./Navigation";
 
 const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState("");
@@ -45,38 +44,41 @@ const LoginForm: React.FC = () => {
 	};
 
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-gray-900">
-			<div className="max-w-md w-full bg-gray-800 p-6 rounded-lg">
-				<h2 className="text-2xl font-semibold text-white mb-6">Login</h2>
-				<form onSubmit={handleFormSubmit}>
-					<div className="mb-4">
-						<label className="block text-white">Email:</label>
-						<input
-							type="email"
-							value={email}
-							onChange={(event) => setEmail(event.target.value)}
-							className="mt-1 px-3 py-2 block w-full rounded-md bg-gray-700 text-white"
-						/>
-					</div>
-					<div className="mb-4">
-						<label className="block text-white">Password:</label>
-						<input
-							type="password"
-							value={password}
-							onChange={(event) => setPassword(event.target.value)}
-							className="mt-1 px-3 py-2 block w-full rounded-md bg-gray-700 text-white"
-						/>
-					</div>
-					<button
-						type="submit"
-						className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-					>
-						Login
-					</button>
-				</form>
+		<>
+			<Navbar />
+			<div className="min-h-screen flex items-center justify-center bg-gray-900">
+				<div className="max-w-md w-full bg-gray-800 p-6 rounded-lg">
+					<h2 className="text-2xl font-semibold text-white mb-6">Login</h2>
+					<form onSubmit={handleFormSubmit}>
+						<div className="mb-4">
+							<label className="block text-white">Email:</label>
+							<input
+								type="email"
+								value={email}
+								onChange={(event) => setEmail(event.target.value)}
+								className="mt-1 px-3 py-2 block w-full rounded-md bg-gray-700 text-white"
+							/>
+						</div>
+						<div className="mb-4">
+							<label className="block text-white">Password:</label>
+							<input
+								type="password"
+								value={password}
+								onChange={(event) => setPassword(event.target.value)}
+								className="mt-1 px-3 py-2 block w-full rounded-md bg-gray-700 text-white"
+							/>
+						</div>
+						<button
+							type="submit"
+							className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+						>
+							Login
+						</button>
+					</form>
+				</div>
+				<Toaster position="top-center" reverseOrder={false} />
 			</div>
-			<Toaster position="top-center" reverseOrder={false} />
-		</div>
+		</>
 	);
 };
 
