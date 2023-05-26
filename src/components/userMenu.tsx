@@ -8,6 +8,7 @@ const DropdownMenu = () => {
 
 	const logout = () => {
 		localStorage.removeItem("accesstoken");
+		localStorage.removeItem("name");
 		navigate("/login");
 	};
 	return (

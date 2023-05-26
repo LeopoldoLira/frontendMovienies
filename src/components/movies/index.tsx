@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../api/api";
 import { Movies } from "../../api/types";
 
+import Footer from "../Footer";
 import Navbar from "../Navigation";
 
 const MovieContainer: React.FC = () => {
@@ -45,6 +46,7 @@ const MovieContainer: React.FC = () => {
 					))}
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

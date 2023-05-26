@@ -25,9 +25,6 @@ const MovieDetail: React.FC = () => {
 		fetchMovie();
 	}, [movieId]);
 
-	// if (!movie) {
-	// 	return <div>Loading...</div>;
-	// }
 	if (loading) {
 		return (
 			<div className="flex items-center mt-8 bg-gradient-to-br from-gray-500 to-gray-900 p-8 rounded-lg">

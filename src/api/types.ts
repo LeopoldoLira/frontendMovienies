@@ -23,3 +23,13 @@ export interface Movies {
 	created_date: Date;
 	updated_date: Date;
 }
+
+export interface Comment {
+	pk: number;
+	movie_rated_owner: string;
+	movie_rated: number;
+	movie_stars?: number;
+	movie_comment: string;
+	created_date?: Date;
+	updated_date?: Date;
+}

@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../api/api";
 import { Token } from "../api/types";
 
@@ -74,6 +74,15 @@ const LoginForm: React.FC = () => {
 						>
 							Login
 						</button>
+						<div className="text-center">
+							<p className="text-white">
+								Don't have an account yet? Create one{" "}
+								<Link to="/signup" className="text-blue-500 hover:underline">
+									here
+								</Link>
+								.
+							</p>
+						</div>
 					</form>
 				</div>
 				<Toaster position="top-center" reverseOrder={false} />
