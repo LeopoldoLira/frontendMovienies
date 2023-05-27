@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import UserFavorites from "./components/Favourites";
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/movies/favourites" element={<UserFavorites />} />
 			</Routes>
+			<Toaster position="bottom-right" />
 		</BrowserRouter>
 	);
 }

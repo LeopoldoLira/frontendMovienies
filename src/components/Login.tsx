@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/api";
 import { Token } from "../api/types";
@@ -85,7 +85,6 @@ const LoginForm: React.FC = () => {
 						</div>
 					</form>
 				</div>
-				<Toaster position="top-center" reverseOrder={false} />
 			</div>
 		</>
 	);
