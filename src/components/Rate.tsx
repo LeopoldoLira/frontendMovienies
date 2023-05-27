@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import API from "../api/api";
 
 const ReviewDialog: React.FC = () => {
@@ -10,7 +10,7 @@ const ReviewDialog: React.FC = () => {
 	const [comment, setComment] = useState("");
 
 	const { movieId } = useParams();
-
+	const navigate = useNavigate();
 	const openDialog = () => {
 		setIsOpen(true);
 	};
@@ -47,6 +47,7 @@ const ReviewDialog: React.FC = () => {
 
 		const status = response.status;
 		if (status === 200) {
+			navigate(0);
 			toast.success("Thanks For reviewing the movie.");
 		}
 
@@ -59,7 +60,7 @@ const ReviewDialog: React.FC = () => {
 	};
 
 	return (
-		<>
+		<div className="flex justify-left pt-4">
 			<button
 				type="button"
 				onClick={openDialog}
@@ -134,7 +135,7 @@ const ReviewDialog: React.FC = () => {
 					</div>
 				</Dialog>
 			</Transition>
-		</>
+		</div>
 	);
 };
 

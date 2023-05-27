@@ -1,47 +1,32 @@
-import { AxiosResponse } from "axios";
 import React, { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/api";
 import Footer from "./Footer";
 import Navbar from "./Navigation";
 
-interface SignUpFormData {
-	email: string;
-	username: string;
-	password: string;
-	first_name: string;
-	last_name: string;
-}
-
 const SignUpForm: React.FC = () => {
+	const [email, setEmail] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [first_name, setFirst_name] = useState("");
+	const [last_name, setLast_name] = useState("");
+
 	const navigate = useNavigate();
-
-	const [formData, setFormData] = useState<SignUpFormData>({
-		email: "",
-		username: "",
-		password: "",
-		first_name: "",
-		last_name: "",
-	});
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setFormData((prevData) => ({
-			...prevData,
-			[name]: value,
-		}));
-	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		// Handle form submission logic here
 
 		try {
-			const response: AxiosResponse<SignUpFormData> = await API.post(
-				"authentication/users/",
-				formData,
-			);
+			const formData = new FormData();
+			formData.append("email", email);
+			formData.append("username", username);
+			formData.append("password", password);
+			formData.append("first_name", first_name);
+			formData.append("last_name", last_name);
+
+			const response = await API.post("authentication/users/", formData);
 
 			if (response.status === 201) {
 				navigate("/login");
@@ -58,10 +43,7 @@ const SignUpForm: React.FC = () => {
 			<Navbar />
 			<div className="flex justify-center items-center min-h-screen bg-gray-100">
 				<div className="w-full max-w-md">
-					<form
-						className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-						onSubmit={handleSubmit}
-					>
+					<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
 						<div className="mb-4">
 							<label
 								className="block text-gray-700 text-sm font-bold mb-2"
@@ -75,8 +57,8 @@ const SignUpForm: React.FC = () => {
 								type="email"
 								name="email"
 								placeholder="Enter your email"
-								value={formData.email}
-								onChange={handleChange}
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
 						</div>
@@ -93,8 +75,8 @@ const SignUpForm: React.FC = () => {
 								type="text"
 								name="username"
 								placeholder="Choose a username"
-								value={formData.username}
-								onChange={handleChange}
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 								required
 							/>
 						</div>
@@ -111,8 +93,8 @@ const SignUpForm: React.FC = () => {
 								type="password"
 								name="password"
 								placeholder="Enter your password"
-								value={formData.password}
-								onChange={handleChange}
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 								required
 							/>
 						</div>
@@ -129,8 +111,8 @@ const SignUpForm: React.FC = () => {
 								type="text"
 								name="first_name"
 								placeholder="Enter your first name"
-								value={formData.first_name}
-								onChange={handleChange}
+								value={first_name}
+								onChange={(e) => setFirst_name(e.target.value)}
 								required
 							/>
 						</div>
@@ -147,8 +129,8 @@ const SignUpForm: React.FC = () => {
 								type="text"
 								name="last_name"
 								placeholder="Enter your last name"
-								value={formData.last_name}
-								onChange={handleChange}
+								value={last_name}
+								onChange={(e) => setLast_name(e.target.value)}
 								required
 							/>
 						</div>
@@ -156,6 +138,7 @@ const SignUpForm: React.FC = () => {
 							<button
 								className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								type="submit"
+								onClick={handleSubmit}
 							>
 								Sign Up
 							</button>
@@ -173,6 +156,7 @@ const SignUpForm: React.FC = () => {
 				</div>
 			</div>
 			<Footer />
+			<Toaster position="top-center" reverseOrder={false} />
 		</>
 	);
 };

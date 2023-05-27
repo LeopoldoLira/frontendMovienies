@@ -5,6 +5,7 @@ import UserFavorites from "./components/Favourites";
 import Login from "./components/Login";
 import SignUpForm from "./components/SignUp";
 import Movies from "./components/movies";
+import CreateMovie from "./components/movies/MovieCreation";
 import MovieDetail from "./components/movies/MovieDetail";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/movies/:movieId" element={<MovieDetail />} />
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/movies/favourites" element={<UserFavorites />} />
+				<Route path="/movies/create" element={<CreateMovie />} />
 			</Routes>
 			<Toaster position="bottom-right" />
 		</BrowserRouter>

@@ -1,11 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
+import useIsUserStaff from "../hooks/useIsUserStaff";
 
 const DropdownMenu = () => {
 	const navigate = useNavigate();
 
 	const userName = localStorage.getItem("name");
-
+	const isStaff = useIsUserStaff();
 	const logout = () => {
 		localStorage.removeItem("accesstoken");
 		localStorage.removeItem("name");
@@ -57,6 +58,20 @@ const DropdownMenu = () => {
 										</Link>
 									)}
 								</Menu.Item>
+								{isStaff ? (
+									<Menu.Item>
+										{({ active }) => (
+											<Link
+												to="/movies/create"
+												className={`${
+													active ? "bg-gray-100" : ""
+												} block px-4 py-2 text-sm text-gray-700`}
+											>
+												Create a Movie 🍿
+											</Link>
+										)}
+									</Menu.Item>
+								) : null}
 							</div>
 						</Menu.Items>
 					</Transition>

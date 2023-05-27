@@ -9,6 +9,8 @@ import useIsUserAuthenticated from "../../hooks/useIsUserAuthenticated";
 import Navbar from "../Navigation";
 import ReviewDialog from "../Rate";
 
+import useIsUserStaff from "../../hooks/useIsUserStaff";
+
 const MovieDetail: React.FC = () => {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState<Movies | null>();
@@ -16,6 +18,8 @@ const MovieDetail: React.FC = () => {
 	const [comment, setComments] = useState<Comment[]>();
 	const isAuthenticated = useIsUserAuthenticated();
 	const navigate = useNavigate();
+
+	const isStaff = useIsUserStaff();
 
 	useEffect(() => {
 		const fetchMovie = async () => {
@@ -118,11 +122,27 @@ const MovieDetail: React.FC = () => {
 								Add to Favourites ❤️
 							</button>
 						) : null}
+						{isAuthenticated ? <ReviewDialog /> : null}
+
+						{isStaff ? (
+							<div className="flex justify-left flex-col w-2/12">
+								<button
+									type="button"
+									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+								>
+									Delete Movie
+								</button>
+								<button
+									type="button"
+									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
+								>
+									Update Movie
+								</button>
+							</div>
+						) : null}
 					</div>
 				</div>
 				<div className="max-w-2xl">
-					{isAuthenticated ? <ReviewDialog /> : null}
-
 					<h3 className="text-2xl font-bold mb-4">Comments</h3>
 					{comment && comment.length > 0 ? (
 						<ul className="bg-gray-900 rounded-lg p-4">
