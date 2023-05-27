@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-	baseURL: `${import.meta.env.VITE_BASE_URL}`,
+	baseURL: "http://liraleopoldo.pythonanywhere.com/",
 });
 
 API.interceptors.request.use((config) => {
