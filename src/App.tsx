@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import UserFavorites from "./components/Favourites";
 import Login from "./components/Login";
 import SignUpForm from "./components/SignUp";
 import Movies from "./components/movies";
@@ -13,6 +14,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/movies/:movieId" element={<MovieDetail />} />
 				<Route path="/signup" element={<SignUpForm />} />
+				<Route path="/movies/favourites" element={<UserFavorites />} />
 			</Routes>
 		</BrowserRouter>
 	);

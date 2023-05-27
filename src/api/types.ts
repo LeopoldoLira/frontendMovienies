@@ -33,3 +33,12 @@ export interface Comment {
 	created_date?: Date;
 	updated_date?: Date;
 }
+
+export interface Favourites {
+	id: number;
+	favourited_owner: number;
+	favourited_movie: number;
+	movie_title: string;
+	movie_image: string;
+	movie_id: number;
+}

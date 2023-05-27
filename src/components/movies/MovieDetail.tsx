@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
 import { useParams } from "react-router-dom";
 import API from "../../api/api";
 import { Movies } from "../../api/types";
+import useIsUserAuthenticated from "../../hooks/useIsUserAuthenticated";
 import Navbar from "../Navigation";
 
 const MovieDetail: React.FC = () => {
 	const { movieId } = useParams();
 	const [movie, setMovie] = useState<Movies | null>();
 	const [loading, setLoading] = useState<boolean>(true);
+
+	const isAuthenticated = useIsUserAuthenticated();
 
 	useEffect(() => {
 		const fetchMovie = async () => {
@@ -24,6 +28,18 @@ const MovieDetail: React.FC = () => {
 
 		fetchMovie();
 	}, [movieId]);
+
+	const handleAddFavorite = async () => {
+		try {
+			if (movie) {
+				await API.post("/api/v2/movies/favourites/add", { movie_id: movieId });
+				// Add logic to update favorite state or show toast message
+				toast.success("Movie added to favourites");
+			}
+		} catch (error) {
+			// Handle error
+		}
+	};
 
 	if (loading) {
 		return (
@@ -72,8 +88,18 @@ const MovieDetail: React.FC = () => {
 							{movie?.movie_score}% out of 100%
 						</span>
 					</div>
+					{isAuthenticated ? (
+						<button
+							type="button"
+							onClick={handleAddFavorite}
+							className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+						>
+							Add to Favourites ❤️
+						</button>
+					) : null}
 				</div>
 			</div>
+			<Toaster position="bottom-right" />
 		</>
 	);
 };
