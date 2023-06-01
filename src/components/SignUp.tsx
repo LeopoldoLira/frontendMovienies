@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/api";
-import Footer from "./Footer";
-import Navbar from "./Navigation";
 
 const SignUpForm: React.FC = () => {
 	const [email, setEmail] = useState("");
@@ -40,7 +38,6 @@ const SignUpForm: React.FC = () => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="flex justify-center items-center min-h-screen bg-gray-100">
 				<div className="w-full max-w-md">
 					<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -155,8 +152,6 @@ const SignUpForm: React.FC = () => {
 					</form>
 				</div>
 			</div>
-			<Footer />
-			<Toaster position="top-center" reverseOrder={false} />
 		</>
 	);
 };

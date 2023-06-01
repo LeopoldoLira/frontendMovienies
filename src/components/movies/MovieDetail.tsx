@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import API from "../../api/api";
 import { Comment, Movies } from "../../api/types";
 import useIsUserAuthenticated from "../../hooks/useIsUserAuthenticated";
-import Navbar from "../Navigation";
 import ReviewDialog from "../Rate";
 
 import useIsUserStaff from "../../hooks/useIsUserStaff";
@@ -48,7 +47,7 @@ const MovieDetail: React.FC = () => {
 
 		fetchMovie();
 		fetchComment();
-	}, [movieId]);
+	}, [movieId, comment]);
 
 	const handleAddFavorite = async () => {
 		try {
@@ -90,7 +89,6 @@ const MovieDetail: React.FC = () => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="flex flex-col items-center mt-8 p-8 rounded-lg">
 				<div className="flex items-center mb-8">
 					<img

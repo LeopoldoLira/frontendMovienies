@@ -3,8 +3,6 @@ import { Toaster, toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import API from "../api/api";
 import { Favourites } from "../api/types";
-import Footer from "./Footer";
-import Navbar from "./Navigation";
 
 const UserFavorites: React.FC = () => {
 	const [favourites, setFavourites] = useState<Favourites[]>([]);
@@ -44,7 +42,6 @@ const UserFavorites: React.FC = () => {
 
 	return (
 		<div className="flex flex-col min-h-screen">
-			<Navbar />
 			<div className="flex-grow p-8">
 				{favourites.length > 0 ? (
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -82,7 +79,6 @@ const UserFavorites: React.FC = () => {
 					</div>
 				)}
 			</div>
-			<Footer />
 			<Toaster position="bottom-right" />
 		</div>
 	);

@@ -5,8 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import API from "../api/api";
 import { Token } from "../api/types";
 
-import Navbar from "./Navigation";
-
 const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -45,7 +43,6 @@ const LoginForm: React.FC = () => {
 
 	return (
 		<>
-			<Navbar />
 			<div className="min-h-screen flex items-center justify-center bg-gray-900">
 				<div className="max-w-md w-full bg-gray-800 p-6 rounded-lg">
 					<h2 className="text-2xl font-semibold text-white mb-6">Login</h2>

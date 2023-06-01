@@ -1,16 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import API from "../api/api";
 
 const ReviewDialog: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [rating, setRating] = useState(0);
+	const [rating, setRating] = useState(1);
 	const [comment, setComment] = useState("");
-
+	const [hover, setHover] = useState(0);
 	const { movieId } = useParams();
-	const navigate = useNavigate();
+
 	const openDialog = () => {
 		setIsOpen(true);
 	};
@@ -47,7 +47,6 @@ const ReviewDialog: React.FC = () => {
 
 		const status = response.status;
 		if (status === 200) {
-			navigate(0);
 			toast.success("Thanks For reviewing the movie.");
 		}
 
@@ -93,11 +92,15 @@ const ReviewDialog: React.FC = () => {
 											key={value}
 											type="button"
 											onClick={() => handleRatingChange(value)}
-											className={`mr-1 ${
-												rating >= value ? "text-yellow-400" : "text-gray-400"
+											onMouseEnter={() => setHover(value)}
+											onMouseLeave={() => setHover(rating)}
+											className={` ${
+												rating >= value || hover >= value
+													? "text-yellow-400"
+													: "text-gray-400"
 											}`}
 										>
-											⭐
+											<span className="text-4xl">&#9733;</span>
 										</button>
 									))}
 								</div>

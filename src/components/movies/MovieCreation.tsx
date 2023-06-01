@@ -2,8 +2,6 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import API from "../../api/api";
-import Footer from "../Footer";
-import Navbar from "../Navigation";
 
 const CreateMovie: React.FC = () => {
 	const [title, setTitle] = useState("");
@@ -46,8 +44,6 @@ const CreateMovie: React.FC = () => {
 
 	return (
 		<>
-			<Navbar />
-
 			<div className="container mx-auto px-4 py-8 shadow-lg  flex justify-center">
 				<form className="w-2/5">
 					<h2 className="text-2xl font-bold mb-4">Create a Movie</h2>
@@ -116,7 +112,6 @@ const CreateMovie: React.FC = () => {
 					</div>
 				</form>
 			</div>
-			<Footer />
 		</>
 	);
 };

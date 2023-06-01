@@ -1,19 +1,18 @@
+import { Ripples } from "@uiball/loaders";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "../../api/api";
 import { Movies } from "../../api/types";
 
-import Footer from "../Footer";
-import Navbar from "../Navigation";
-
 const MovieContainer: React.FC = () => {
 	const [movies, setMovies] = useState<Movies[]>([]);
-
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const fetchMovies = async () => {
 			try {
 				const response = await API.get("/api/v2/movies");
 				setMovies(response.data);
+				setLoading(false);
 			} catch (error) {
 				// Handle error
 			}
@@ -21,10 +20,15 @@ const MovieContainer: React.FC = () => {
 
 		fetchMovies();
 	}, []);
-
+	if (loading) {
+		return (
+			<div className="flex items-center justify-center p-8 h-screen">
+				<Ripples size={150} speed={5} color="white" />;
+			</div>
+		);
+	}
 	return (
 		<>
-			<Navbar />
 			<div className="flex justify-center p-8">
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 ">
 					{movies.map((movie) => (
@@ -46,7 +50,6 @@ const MovieContainer: React.FC = () => {
 					))}
 				</div>
 			</div>
-			<Footer />
 		</>
 	);
 };
