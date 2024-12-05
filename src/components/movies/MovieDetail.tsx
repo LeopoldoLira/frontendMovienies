@@ -89,14 +89,14 @@ const MovieDetail: React.FC = () => {
 
 	return (
 		<>
-			<div className="flex flex-col items-center mt-8 p-8 rounded-lg">
-				<div className="flex items-center mb-8">
+			<div className="grid grid-cols-1 gap-8 gap-y-[10rem] items-center mt-8 p-8 rounded-lg">
+				<div className="flex items-center gap-5">
 					<img
-						src={movie?.movie_image}
+						src={"/no-preview.png"}
 						alt={movie?.movie_title}
 						className="w-96 rounded-lg shadow-lg mr-8"
 					/>
-					<div>
+					<div className="flex flex-col items-center md:items-start text-center md:text-left">
 						<h2 className="text-3xl font-bold mb-4 text-white">
 							{movie?.movie_title}
 						</h2>
@@ -141,7 +141,9 @@ const MovieDetail: React.FC = () => {
 					</div>
 				</div>
 				<div className="max-w-2xl">
-					<h3 className="text-2xl font-bold mb-4">Comments</h3>
+					<h3 className="text-xl md:text-2xl text-white font-bold mb-4">
+						Comments
+					</h3>
 					{comment && comment.length > 0 ? (
 						<ul className="bg-gray-900 rounded-lg p-4">
 							{comment.map((comment: Comment) => (
