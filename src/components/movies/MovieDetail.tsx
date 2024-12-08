@@ -92,11 +92,11 @@ const MovieDetail: React.FC = () => {
 			<div className="grid grid-cols-1 gap-8 gap-y-[10rem] items-center mt-8 p-8 rounded-lg">
 				<div className="flex items-center gap-5">
 					<img
-						src={"/no-preview.png"}
+						src={movie?.movie_image}
 						alt={movie?.movie_title}
 						className="w-96 rounded-lg shadow-lg mr-8"
 					/>
-					<div className="flex flex-col items-center md:items-start text-center md:text-left">
+					<div className="flex flex-coSl items-center md:items-start text-center md:text-left">
 						<h2 className="text-3xl font-bold mb-4 text-white">
 							{movie?.movie_title}
 						</h2>

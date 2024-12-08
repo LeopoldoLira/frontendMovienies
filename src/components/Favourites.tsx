@@ -49,7 +49,7 @@ const UserFavorites: React.FC = () => {
 							<div key={favourite.movie_id} className="relative">
 								<Link to={`/movies/${favourite.movie_id}`}>
 									<img
-										src={"/no-preview.png"}
+										src={favourite.movie_image}
 										alt={favourite.movie_title}
 										className="object-cover w-full h-full rounded-md transition-all duration-300 filter brightness-100 hover:brightness-50"
 									/>

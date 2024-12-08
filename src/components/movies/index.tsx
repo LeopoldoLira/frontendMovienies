@@ -45,7 +45,7 @@ const MovieContainer: React.FC = () => {
 						<div key={movie.pk} className="relative">
 							<Link to={`movies/${movie.pk}`}>
 								<img
-									src={movie.movie_image}
+									src={movie.movie_image || fallbackMovieImage}
 									alt={movie.movie_title}
 									className="object-cover w-full h-full rounded-md transition-all duration-300 filter brightness-100 hover:brightness-50"
 									onError={handleImageError}
