@@ -5,6 +5,8 @@ import API from "../../api/api";
 import { Movies } from "../../api/types";
 
 const MovieContainer: React.FC = () => {
+	const fallbackMovieImage = "/no-preview.png";
+
 	const [movies, setMovies] = useState<Movies[]>([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -27,6 +29,14 @@ const MovieContainer: React.FC = () => {
 			</div>
 		);
 	}
+
+	// Function to handle image loading errors and set fallback image
+	const handleImageError = (
+		event: React.SyntheticEvent<HTMLImageElement, Event>,
+	) => {
+		event.currentTarget.src = fallbackMovieImage;
+	};
+
 	return (
 		<>
 			<div className="flex justify-center p-8">
@@ -35,9 +45,10 @@ const MovieContainer: React.FC = () => {
 						<div key={movie.pk} className="relative">
 							<Link to={`movies/${movie.pk}`}>
 								<img
-									src={"/no-preview.png"}
+									src={movie.movie_image || fallbackMovieImage}
 									alt={movie.movie_title}
 									className="object-cover w-full h-full rounded-md transition-all duration-300 filter brightness-100 hover:brightness-50"
+									onError={handleImageError}
 								/>
 							</Link>
 							<div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-75 p-4 rounded-b-md">
